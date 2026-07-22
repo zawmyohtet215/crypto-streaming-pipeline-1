@@ -47,12 +47,12 @@ def lambda_handler(event, context):
 
         try:
             # Convert to JSON line and send to Kinesis Data Stream
-            data_json = json.dumps(data_to_send) + "\n"
+            data_json = json.dumps(data_to_send)
 
             kinesis_client.put_record(
                 StreamName=STREAM_NAME,
                 Data=data_json.encode("utf-8"),
-                PartitionKey="cryto-prices-NRT"
+                PartitionKey="crypto-prices-NRT"
             )
 
             print(f"Data successfully sent to Kinesis at {timestamp} (Yangon Time)")
